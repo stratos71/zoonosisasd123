@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('propietarios', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombres');
             $table->string('apellido_paterno');
             $table->string('apellido_materno')->nullable();
             $table->string('fecha_nacimiento');

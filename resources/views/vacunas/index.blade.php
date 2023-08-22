@@ -9,8 +9,8 @@
                 <div class="card-body">
 
                     <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal"
-                        data-bs-target="#crear_especie">Agregar
-                        Especie</button>
+                        data-bs-target="#crear_vacunacion">Agregar
+                        Vacunacion</button>
 
                     <!--MODAL AGREGAR ESPECIE-->
                     <div class="modal fade" id="crear_especie" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -50,50 +50,6 @@
                     </div>
                     <!--MODAL AGREGAR ESPECIE-->
 
-                    <!--MODAL EDITAR ESPECIE-->
-                    <div class="modal fade" id="editar_especie" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog mt-5" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header" style="background-color: rgb(182, 182, 182)">
-                                    <h4 class="modal-title text-black">Editar Especie</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <form id="form2" method="POST" onsubmit="bloquear2()">
-                                    @csrf
-                                    <div class="modal-body">
-                                        <div class="mb-2">
-                                            <label for="recipient-name" class="col-form-label"><b>Nombre
-                                                    de la Especie</b></label>
-                                            <input required maxlength="100" type="text" class="form-control"
-                                                name="nombre">
-                                        </div>
-                                        <div class="mb-2">
-                                            <label for="recipient-name" class="col-form-label"><b>Descripción</b></label>
-                                            <input required maxlength="100" type="text" class="form-control"
-                                                name="descripcion">
-                                        </div>
-                                        <div class="mb-2">
-                                            <label for="message-text" class="col-form-label"><b>Estado</b></label>
-                                            <select required class="form-control" name="estado">
-                                                <option value="Activo">Activo</option>
-                                                <option value="Inactivo">Inactivo</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button class="btn btn-danger mr-auto" type="button" data-bs-dismiss="modal"
-                                            aria-label="Close">Salir</button>
-                                        <button id="boton2" class="btn btn-info" type="submit">Guardar
-                                            Especie</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <!--MODAL EDITAR ESPECIE-->
 
                     <div class="table-responsive">
                         <table id="datatable" class="table table-striped table-bordered">
@@ -144,183 +100,209 @@
                         </table>
                     </div>
 
-                    <div class="modal fade" id="crear_vacunacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog mt-5" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header" style="background-color: rgb(182, 182, 182)">
-                                
-                                <h4 class="modal-title text-black">Agregar Vacunacion</h4>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                    <div class="modal fade" id="crear_vacunacion" tabindex="-1" role="dialog"
+                        aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog mt-5" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(182, 182, 182)">
+
+                                    <h4 class="modal-title text-black">Agregar Vacunacion</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <form id="form" method="POST" action="{{ route('crear_vacuna') }}"
+                                    onsubmit="bloquear()">
+
+                                    @csrf
+                                    <div class="modal-body">
+                                        <hr>
+                                        <h2>Datos del Propietario </h2>
+                                        <hr>
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b>Nombre
+                                                </b></label>
+                                            <input required maxlength="100" type="text" class="form-control"
+                                                name="nombres">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b>Apellido Paterno
+                                                </b></label>
+                                            <input required maxlength="100" type="text" class="form-control"
+                                                name="apellido_paterno">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b>Apellido Materno
+                                                </b></label>
+                                            <input maxlength="100" type="text" class="form-control"
+                                                name="apellido_materno">
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> Fecha de Nacimiento
+                                                </b></label>
+                                            <input required maxlength="100" type="date" class="form-control"
+                                                name="fecha_nacimiento">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> C.I.
+                                                </b></label>
+                                            <input required maxlength="10" type="number" class="form-control"
+                                                name="ci">
+                                        </div>
+
+                                        <div class="col-4">
+                                            <div class="mb-2">
+                                                <label for="message-text" class="col-form-label"><b>Expedido</b></label>
+                                                <select required class="form-control" name="exp">
+                                                    <option value="LP">LP</option>
+                                                    <option value="OR">OR</option>
+                                                    <option value="PT">PT</option>
+                                                    <option value="CB">CB</option>
+                                                    <option value="CH">CH</option>
+                                                    <option value="TJ">TJ</option>
+                                                    <option value="PD">PD</option>
+                                                    <option value="BN">BN</option>
+                                                    <option value="SC">SC</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> Complemento
+                                                </b></label>
+                                            <input required maxlength="10" type="text" class="form-control"
+                                                name="complemento">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> Direccion
+                                                </b></label>
+                                            <input required maxlength="100" type="text" class="form-control"
+                                                name="direccion">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> Distrito
+                                                </b></label>
+                                            <input required maxlength="100" type="text" class="form-control"
+                                                name="distrito">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> N° de Domicilio
+                                                </b></label>
+                                            <input required maxlength="100" type="number" class="form-control"
+                                                name="nro_domicilio">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> Correo Electronico
+                                                </b></label>
+                                            <input required maxlength="100" type="text" class="form-control"
+                                                name="correo">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> Celular
+                                                </b></label>
+                                            <input required maxlength="8" type="number" class="form-control"
+                                                name="celular">
+                                        </div>
+
+                                        <hr>
+                                        <h2>Datos del Animal </h2>
+                                        <hr>
+
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> Especie
+                                                </b></label>
+                                            <select required name="especie_id" id="">
+                                                <option value="">---</option>
+                                                @foreach ($especies as $especie)
+                                                    <option value="{{ $especie->id }}"> {{ $especie->nombre }}</option>
+                                            </select>
+                                            @endforeach
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> Nombre
+                                                </b></label>
+                                            <input required maxlength="100" type="text" class="form-control"
+                                                name="nombre">
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> Raza
+                                                </b></label>
+                                            <input required maxlength="100" type="text" class="form-control"
+                                                name="raza">
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> Edad
+                                                </b></label>
+                                            <input required type="number" class="form-control"
+                                                name="edad">
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> Color
+                                                </b></label>
+                                            <input required maxlength="100" type="text" class="form-control"
+                                                name="color">
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> Tamaño
+                                                </b></label>
+                                            <input required maxlength="100" type="text" class="form-control"
+                                                name="tamaño">
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> Genero
+                                                </b></label>
+                                            <select required name="genero">
+                                                <option value="">---</option>
+                                                <option value="MACHO">Macho</option>
+                                                <option value="HEMBRA">Hembra</option>
+                                            </select>
+
+
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> Esterilizado
+                                                </b></label>
+                                            <select required name="esterilizado" >
+                                                <option value="">---</option>
+                                                <option value="SI">SI</option>
+                                                <option value="NO">No</option>
+                                            </select>
+
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> Fecha de Vacunacion
+                                                </b></label>
+                                            <input required maxlength="100" type="date" class="form-control"
+                                                name="fecha_vacuna">
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label for="recipient-name" class="col-form-label"><b> Nombre del Vacunador
+                                                </b></label>
+                                            <select  class="form-control" required name="espmas" id="">
+                                                <option selected value="{{ $user->id }}">
+                                                    {{ $user->nombre_completo }}</option>
+                                            </select>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-danger mr-auto" type="button" data-bs-dismiss="modal"
+                                                aria-label="Close">Salir</button>
+                                            <button id="boton" class="btn btn-info" type="submit">Guardar
+                                                Especie</button>
+                                        </div>
+                                </form>
                             </div>
-                            <form id="form" method="POST" action="{{ route('crear_especie') }}"
-                                onsubmit="bloquear()">
-
-                                @csrf
-                                <div class="modal-body">
-                                    <hr><h2>Datos del Propietario </h2><hr>
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b>Nombre
-                                                </b></label>
-                                        <input required maxlength="100" type="text" class="form-control"
-                                            name="nombreprop">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b>Apellido Paterno
-                                                </b></label>
-                                        <input required maxlength="100" type="text" class="form-control"
-                                            name="appaterprop">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b>Apellido Materno
-                                                </b></label>
-                                        <input required maxlength="100" type="text" class="form-control"
-                                            name="apmaterprop">
-                                    </div>
-
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> Fecha de Nacimiento
-                                                </b></label>
-                                        <input required maxlength="100" type="date" class="form-control"
-                                            name="naciprop">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> C.I.
-                                                </b></label>
-                                        <input required maxlength="100" type="number" class="form-control"
-                                            name="ciprop">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> Complemento
-                                                </b></label>
-                                        <input required maxlength="100" type="text" class="form-control"
-                                            name="cciprop">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> Direccion
-                                                </b></label>
-                                        <input required maxlength="100" type="text" class="form-control"
-                                            name="dirprop">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> Distrito
-                                                </b></label>
-                                        <input required maxlength="100" type="text" class="form-control"
-                                            name="disprop">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> N° de Domicilio
-                                                </b></label>
-                                        <input required maxlength="100" type="number" class="form-control"
-                                            name="ndomprop">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> Correo Electronico
-                                                </b></label>
-                                        <input required maxlength="100" type="text" class="form-control"
-                                            name="emailprop">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> Celular
-                                                </b></label>
-                                        <input required maxlength="8" type="number" class="form-control"
-                                            name="cellprop">
-                                    </div>
-
-                                    <hr><h2>Datos del Animal </h2><hr>
-
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> Especie
-                                                </b></label>
-                                                <select required name="espmas" id="">
-                                                    <option value="">---</option>
-                                                    @foreach ($especies as $especie)
-                                                    <option value="{{$especie->id}}"> {{$especie->nombre}}</option>
-                                                </select>
-                                                @endforeach                                          
-                                    </div>
-                                    
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> Nombre
-                                                </b></label>
-                                        <input required maxlength="100" type="text" class="form-control"
-                                            name="nommas">
-                                    </div>
-                                    
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> Raza
-                                                </b></label>
-                                        <input required maxlength="100" type="text" class="form-control"
-                                            name="razmas">
-                                    </div>
-                                    
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> Edad
-                                                </b></label>
-                                        <input required maxlength="100" type="text" class="form-control"
-                                            name="edadmas">
-                                    </div>
-                                    
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> Color
-                                                </b></label>
-                                        <input required maxlength="100" type="text" class="form-control"
-                                            name="colmas">
-                                    </div>
-                                    
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> Tamaño
-                                                </b></label>
-                                        <input required maxlength="100" type="text" class="form-control"
-                                            name="tammas">
-                                    </div>
-                                    
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> Genero
-                                                </b></label>
-                                                <select required name="genmas" id="">
-                                                    <option value="">---</option>
-                                                    <option value="macho">Macho</option>
-                                                    <option value="hembra">Hembra</option>                                                     
-                                                </select>
-
-                                       
-                                    </div>
-                                    
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> Esterilizado
-                                                </b></label>
-                                                <select required name="estermas" id="">
-                                                    <option value="">---</option>
-                                                    <option value="si">SI</option>
-                                                    <option value="no">No</option>                                                     
-                                                </select>
-                                       
-                                    </div>
-                                    
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> Fecha de Vacunacion
-                                                </b></label>
-                                        <input required maxlength="100" type="date" class="form-control"
-                                            name="fecvacmas">
-                                    </div>
-                                    
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label"><b> Nombre del Vacunador
-                                                </b></label>
-                                                <select required name="espmas" id="">
-                                                    <option value="">---</option>
-                                                    @foreach ($usuarios as $user)
-                                                    <option value="{{$user->id}}"> {{$user->nombre_completo}}</option>
-                                                </select>
-                                                @endforeach  
-                                        <input required maxlength="100" type="text" class="form-control"
-                                            name="nomvacu">
-                                    </div>
-
-
-
+                        </div>
+                    </div>
                 </div>
             </div>
 

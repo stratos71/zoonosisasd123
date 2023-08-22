@@ -24,7 +24,7 @@ class VacunaController extends Controller
         try {
             $data_propietario = $request->validate([
                 //datos del propietario
-                'nombre' => 'required|string|max:100',
+                'nombres' => 'required|string|max:100',
                 'apellido_paterno' => 'required|string|max:100',
                 'apellido_materno'  => 'nullable|string|max:100',
                 'fecha_nacimiento' => 'required|string|max:100',
@@ -48,7 +48,6 @@ class VacunaController extends Controller
                 'genero' => 'required|string|max:100',
                 'esterilizado' => 'required|string|max:100',
                 'fecha_vacuna' => 'required|string|max:100',
-                'propietario_id' => 'required',
                 'especie_id' => 'required',
             ]);
 
