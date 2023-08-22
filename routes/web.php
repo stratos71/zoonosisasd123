@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\EspecieController;
+use App\Http\Controllers\VacunaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,6 +18,11 @@ Route::post('/iniciar_sesion', [AuthController::class, 'iniciar_sesion'])->name(
 
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::middleware('auth')->group(function () {
+
+
+        Route::get('/vacunas', [VacunaController::class, 'index'])->name('vacunas');
+
+
         Route::post('/cerrar_sesion', [AuthController::class, 'cerrar_sesion'])->name('cerrar_sesion');
 
         Route::get('/roles', [RolesController::class, 'index'])->name('roles');
@@ -38,6 +44,5 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
 
         Route::get('/registros', 'RegistroController@index')->name('registros');
-        
     });
 });

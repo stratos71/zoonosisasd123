@@ -26,6 +26,12 @@
         </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="{{ route('vacunas') }}">
+            <i class="bi bi-card-checklist"></i>
+            &nbsp; Vacunación
+        </a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="#">
             <i class="bi bi-card-checklist"></i>
             &nbsp; Registros
@@ -39,7 +45,7 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" href="#">
-            <i class="bi bi-exclamation-diamond-fill"></i> 
+            <i class="bi bi-exclamation-diamond-fill"></i>
             &nbsp; Mordeduras
         </a>
     </li>
