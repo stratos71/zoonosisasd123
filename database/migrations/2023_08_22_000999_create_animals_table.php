@@ -26,15 +26,13 @@ return new class extends Migration
             $table->foreign('propietario_id')->references('id')
                 ->on('propietarios')->onDelete('cascade');
 
-                #saluditos a Cristian
+            #saluditos a Cristian
 
             $table->unsignedBigInteger('especie_id');
             $table->foreign('especie_id')->references('id')
                 ->on('especies')->onDelete('cascade');
 
-            $table->unsignedBigInteger('vacuna_id');
-            $table->foreign('vacuna_id')->references('id')
-                ->on('vacunas')->onDelete('cascade');
+
 
 
 
