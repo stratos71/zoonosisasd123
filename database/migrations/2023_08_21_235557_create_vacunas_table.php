@@ -18,7 +18,7 @@ return new class extends Migration
 
             // Columnas de relación
             $table->unsignedBigInteger('usuario_id');
-            $table->unsignedBigInteger('animal_id');
+
 
 
             $table->string('estado');
@@ -27,7 +27,7 @@ return new class extends Migration
 
             // Estableciendo las relaciones
             $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('animal_id')->references('id')->on('animales')->onDelete('cascade');
+
            
         });
     }

@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('animals', function (Blueprint $table) {
+        Schema::create('animales', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 100);
             $table->string('raza', 100);
@@ -24,15 +24,15 @@ return new class extends Migration
 
             $table->unsignedBigInteger('propietario_id');
             $table->foreign('propietario_id')->references('id')
-                ->on('propietario')->onDelete('cascade');
+                ->on('propietarios')->onDelete('cascade');
 
             $table->unsignedBigInteger('especie_id');
             $table->foreign('especie_id')->references('id')
-                ->on('especie')->onDelete('cascade');
+                ->on('especies')->onDelete('cascade');
 
             $table->unsignedBigInteger('vacuna_id');
             $table->foreign('vacuna_id')->references('id')
-                ->on('vacuna')->onDelete('cascade');
+                ->on('vacunas')->onDelete('cascade');
 
 
 
