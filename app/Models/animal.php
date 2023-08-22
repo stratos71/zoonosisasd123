@@ -28,10 +28,7 @@ class animal extends Model
 
     public function especie()
     { return $this->belongsTo(Especie ::class);}
-
-    public function vacuna()
-    { return $this->belongsTo(Vacuna ::class);}
-    
+  
 
 
 }
