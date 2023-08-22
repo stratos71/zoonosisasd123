@@ -143,8 +143,189 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <div class="modal fade" id="crear_vacunacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog mt-5" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: rgb(182, 182, 182)">
+                                
+                                <h4 class="modal-title text-black">Agregar Vacunacion</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form id="form" method="POST" action="{{ route('crear_especie') }}"
+                                onsubmit="bloquear()">
+
+                                @csrf
+                                <div class="modal-body">
+                                    <hr><h2>Datos del Propietario </h2><hr>
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b>Nombre
+                                                </b></label>
+                                        <input required maxlength="100" type="text" class="form-control"
+                                            name="nombreprop">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b>Apellido Paterno
+                                                </b></label>
+                                        <input required maxlength="100" type="text" class="form-control"
+                                            name="appaterprop">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b>Apellido Materno
+                                                </b></label>
+                                        <input required maxlength="100" type="text" class="form-control"
+                                            name="apmaterprop">
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> Fecha de Nacimiento
+                                                </b></label>
+                                        <input required maxlength="100" type="date" class="form-control"
+                                            name="naciprop">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> C.I.
+                                                </b></label>
+                                        <input required maxlength="100" type="number" class="form-control"
+                                            name="ciprop">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> Complemento
+                                                </b></label>
+                                        <input required maxlength="100" type="text" class="form-control"
+                                            name="cciprop">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> Direccion
+                                                </b></label>
+                                        <input required maxlength="100" type="text" class="form-control"
+                                            name="dirprop">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> Distrito
+                                                </b></label>
+                                        <input required maxlength="100" type="text" class="form-control"
+                                            name="disprop">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> N° de Domicilio
+                                                </b></label>
+                                        <input required maxlength="100" type="number" class="form-control"
+                                            name="ndomprop">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> Correo Electronico
+                                                </b></label>
+                                        <input required maxlength="100" type="text" class="form-control"
+                                            name="emailprop">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> Celular
+                                                </b></label>
+                                        <input required maxlength="8" type="number" class="form-control"
+                                            name="cellprop">
+                                    </div>
+
+                                    <hr><h2>Datos del Animal </h2><hr>
+
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> Especie
+                                                </b></label>
+                                                <select required name="espmas" id="">
+                                                    <option value="">---</option>
+                                                    @foreach ($especies as $especie)
+                                                    <option value="{{$especie->id}}"> {{$especie->nombre}}</option>
+                                                </select>
+                                                @endforeach                                          
+                                    </div>
+                                    
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> Nombre
+                                                </b></label>
+                                        <input required maxlength="100" type="text" class="form-control"
+                                            name="nommas">
+                                    </div>
+                                    
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> Raza
+                                                </b></label>
+                                        <input required maxlength="100" type="text" class="form-control"
+                                            name="razmas">
+                                    </div>
+                                    
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> Edad
+                                                </b></label>
+                                        <input required maxlength="100" type="text" class="form-control"
+                                            name="edadmas">
+                                    </div>
+                                    
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> Color
+                                                </b></label>
+                                        <input required maxlength="100" type="text" class="form-control"
+                                            name="colmas">
+                                    </div>
+                                    
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> Tamaño
+                                                </b></label>
+                                        <input required maxlength="100" type="text" class="form-control"
+                                            name="tammas">
+                                    </div>
+                                    
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> Genero
+                                                </b></label>
+                                                <select required name="genmas" id="">
+                                                    <option value="">---</option>
+                                                    <option value="macho">Macho</option>
+                                                    <option value="hembra">Hembra</option>                                                     
+                                                </select>
+
+                                       
+                                    </div>
+                                    
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> Esterilizado
+                                                </b></label>
+                                                <select required name="estermas" id="">
+                                                    <option value="">---</option>
+                                                    <option value="si">SI</option>
+                                                    <option value="no">No</option>                                                     
+                                                </select>
+                                       
+                                    </div>
+                                    
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> Fecha de Vacunacion
+                                                </b></label>
+                                        <input required maxlength="100" type="date" class="form-control"
+                                            name="fecvacmas">
+                                    </div>
+                                    
+                                    <div class="mb-2">
+                                        <label for="recipient-name" class="col-form-label"><b> Nombre del Vacunador
+                                                </b></label>
+                                                <select required name="espmas" id="">
+                                                    <option value="">---</option>
+                                                    @foreach ($usuarios as $user)
+                                                    <option value="{{$user->id}}"> {{$user->nombre_completo}}</option>
+                                                </select>
+                                                @endforeach  
+                                        <input required maxlength="100" type="text" class="form-control"
+                                            name="nomvacu">
+                                    </div>
+
+
+
                 </div>
             </div>
+
+
+
         </div>
     </div>
 

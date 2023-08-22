@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Especie;
+use App\Models\User;
 
 class EspecieController extends Controller
 {
+     
+    public $open =true;
     public function index()
     {
         $especies = Especie::orderBy('updated_at', 'desc')->get();
+
+     
+        
         return view('especies.index', compact('especies'));
     }
 
