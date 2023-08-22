@@ -44,5 +44,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
 
         Route::get('/registros', 'RegistroController@index')->name('registros');
+
+        Route::get('/vacunas', [EspecieController::class, 'index'])->name('vacunas');
+        Route::post('/crear_vacuna', [EspecieController::class, 'crear_especie'])->name('crear_vacuna');
+        Route::post('/editar_vacuna/{id}', [EspecieController::class, 'editar_especie'])->name('editar_vacuna');
+        Route::delete('/eliminar_vacuna/{id}', [EspecieController::class, 'eliminar_especie'])->name('eliminar_vacuna');
+        
     });
 });
