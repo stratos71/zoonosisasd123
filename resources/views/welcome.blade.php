@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 
-
+<!--VISTA DE BIENVENIDA (USUARIOS NO LOGUEADOS)-->
 @section('content')
     <div class="container-fluid" style="margin-top: 180px">
         <div class="row">
@@ -10,16 +10,16 @@
                         <a class="m-1 btn btn-info" href="/">INICIO</a>
                     </li>
                     <li class="nav-item">
-                        <a class="m-1 btn btn-info" href="#link2">CONSULTA CARNET</a>
+                        <a class="m-1 btn btn-info" href="#">CONSULTA CARNET</a>
                     </li>
                     <li class="nav-item">
-                        <a class="m-1 btn btn-info" href="#link3">REGISTRO</a>
+                        <a class="m-1 btn btn-info" href="#">REGISTRO</a>
                     </li>
                     <li class="nav-item">
-                        <a class="m-1 btn btn-info" href="#link4">MI CIUDAD</a>
+                        <a class="m-1 btn btn-info" href="#">MI CIUDAD</a>
                     </li>
                     <li class="nav-item">
-                        <a class="m-1 btn btn-info" href="#link5">CAMPAÑAS</a>
+                        <a class="m-1 btn btn-info" href="#">CAMPAÑAS</a>
                     </li>
                     <li class="nav-item">
                         <a class="m-1 btn btn-info" href="/ingresar">INICIAR SESIÓN</a>
@@ -28,13 +28,10 @@
             </nav>
         </div>
         <div class="text-center mt-3">
-            <img src="https://scontent.flpb1-2.fna.fbcdn.net/v/t39.30808-6/275777263_138088872063777_3644364205981698978_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=e3f864&_nc_ohc=vru-Z1bzlyEAX8DcXf5&_nc_ht=scontent.flpb1-2.fna&oh=00_AfA0ANtdF0mk5V1j9ROn0K9Tqm2B2gmQXG_sKj5yo9zDMg&oe=64E7C055"
-                width="300px" alt="">
-
+            <img src="/img/zoonosis.jpg" width="300px" alt="">
             <div class="d-flex justify-content-center">
                 <div class="mt-3"
                     style="max-width: 600px;background-color: #ffffff98; border: solid 2px black; padding: 15px;">
-
                     <h5 style="color: black">
                         El Área de Zoonosos dependiente de Dirección de Gestión en salud - Secretaria Municipal de Salud, es
                         de

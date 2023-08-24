@@ -30,8 +30,16 @@
     <!-- DataTables CSS and JS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.4/datatables.min.css" />
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.4/datatables.min.js"></script>
-</head>
+    <!-- CSS para Buttons -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+    <!-- JS para Buttons -->
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.pdf.min.js"></script>
 
+</head>
 
 <body>
     <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
@@ -40,24 +48,21 @@
                 <img class="c-sidebar-brand-full mt-1 mb-1" src="{{ url('/img/logo_gamea2.png') }}" width="120">
             </a>
         </div>
-
         @include('layouts.navigation')
-
     </div>
     <div class="wrapper d-flex flex-column min-vh-100 bg-light">
-
         @include('layouts.includes.header')
-        <div class="body flex-grow-1 px-3">
+        <div class="body flex-grow-1">
             <div class="container-lg">
                 <div class="mb-4">@yield('content')</div>
             </div>
         </div>
         @include('layouts.includes.footer')
     </div>
-
     <script src="js/bundle.min.js"></script>
 </body>
 
+<!--MOSTRAR TOASTR-->
 <script type="text/javascript">
     @if (Session::has('success'))
         toastr.success("{{ Session::get('success') }}");

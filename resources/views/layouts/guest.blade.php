@@ -22,21 +22,16 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-
 </head>
 
 <body class="d-flex justify-content-center"
     style="min-height: 100vh; background-image: url('{{ asset('img/jacha_uta.jpg') }}'); background-size: cover; background-repeat: no-repeat; background-position: center center;">
-
-
     <img src="/img/logo_escudo.png" alt="" style="max-width: 150px; position: absolute; top: 20px; left: 20px;">
     <img src="/img/logo_gamea.png" alt="" style="max-width: 150px; position: absolute; top: 20px; right: 20px;">
-
     @yield('content')
-
     <script src="js/bundle.min.js"></script>
 </body>
-
+<!--MOSTRAR TOASTR-->
 <script type="text/javascript">
     @if (Session::has('success'))
         toastr.success("{{ Session::get('success') }}");

@@ -9,7 +9,7 @@ class Vacuna extends Model
 {
     use HasFactory;
 
-    protected $table = 'vacunas'; // Esto es opcional, porque Laravel asume que el nombre de la tabla es el plural del nombre del modelo.
+    protected $table = 'vacunas';
 
     protected $fillable = [
         'medicamento',
@@ -18,16 +18,16 @@ class Vacuna extends Model
         'animal_id',
         'estado',
         'fecha_vacuna',
+        'nro_carnet'
     ];
-
+    //Relación vacuna->usuario
     public function usuario()
     {
         return $this->belongsTo(User::class, 'usuario_id');
     }
-
+    //Relación vacuna->animal
     public function animal()
     {
         return $this->belongsTo(Animal::class, 'animal_id');
     }
-
 }

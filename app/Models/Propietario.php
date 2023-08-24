@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Propietario extends Model
 {
     use HasFactory;
-
-
     protected $fillable = [
         'nombres',
         'apellido_paterno',
@@ -24,7 +22,7 @@ class Propietario extends Model
         'correo',
         'celular',
     ];
-
+    //Relación propietario->animal
     public function animal()
     {
         return $this->hasOne(Animal::class);

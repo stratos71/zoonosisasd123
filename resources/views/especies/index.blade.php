@@ -5,9 +5,7 @@
         <div class="fade-in">
             <div class="card">
                 <div class="card-header">Administrar Especies</div>
-
                 <div class="card-body">
-
                     <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal"
                         data-bs-target="#crear_especie">Agregar
                         Especie</button>
@@ -24,7 +22,6 @@
                                 </div>
                                 <form id="form" method="POST" action="{{ route('crear_especie') }}"
                                     onsubmit="bloquear()">
-
                                     @csrf
                                     <div class="modal-body">
                                         <div class="mb-2">
@@ -94,7 +91,7 @@
                         </div>
                     </div>
                     <!--MODAL EDITAR ESPECIE-->
-
+                    <!--TABLA DE ESPECIES-->
                     <div class="table-responsive">
                         <table id="datatable" class="table table-striped table-bordered">
                             <thead>
@@ -142,13 +139,14 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <!--TABLA DE ESPECIES-->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
+    <!--FUNCIÓN PARA OBTENER DATOS ACTUALES PARA EDITAR-->
     <script>
         $(document).ready(function() {
             $('.especieUpdate').on('click', function() {
@@ -161,7 +159,7 @@
             });
         });
     </script>
-
+    <!--BLOQUEO DEL BOTON-->
     <script>
         function bloquear() {
             var btn = document.getElementById("boton");
@@ -173,7 +171,7 @@
             btn.disabled = true;
         }
     </script>
-
+    <!--BLOQUEO DEL BOTON-->
     <script>
         function bloquear2() {
             var btn = document.getElementById("boton2");
@@ -185,11 +183,21 @@
             btn.disabled = true;
         }
     </script>
-
+    <!--INICIALIZACIÓN DE DATATABLE-->
     <script>
         $(document).ready(function() {
             $('#datatable').DataTable({
                 order: [],
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy',
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
+                    }
+                ],
                 language: {
                     processing: "Procesando...",
                     search: "Buscar:",

@@ -9,10 +9,8 @@
              </div>
              <form id="form" method="POST" action="{{ route('cambiar_contraseña', Auth::user()->id) }}"
                  onsubmit="bloquear()">
-
                  @csrf
                  <div class="modal-body">
-
                      <div class="mb-2">
                          <label for="message-text" class="col-form-label"><b>Ingrese su contraseña actual</b></label>
                          <input required minlength="4" maxlength="100" type="password" class="form-control"
@@ -134,7 +132,7 @@
 
 
 
-
+     <!--BLOQUEO DEL BOTON-->
      <script>
          function bloquear() {
              var btn = document.getElementById("boton");
@@ -146,7 +144,7 @@
              btn.disabled = true;
          }
      </script>
-
+     <!--BLOQUEO DEL BOTON-->
      <script>
          function bloquear2() {
              var btn = document.getElementById("boton2");

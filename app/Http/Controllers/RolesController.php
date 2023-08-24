@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class RolesController extends Controller
 {
+    //Redirección a la vista de roles
     public function index()
     {
         $permisos = Permission::all();
@@ -19,7 +20,7 @@ class RolesController extends Controller
             ->all();
         return view('roles.index', compact('roles', 'permisos', 'rolePermissions'));
     }
-
+    //Función para crear un nuevo rol con permisos
     public function crear_rol(Request $request)
     {
         try {
@@ -34,8 +35,7 @@ class RolesController extends Controller
             return redirect()->route('roles')->with('error', 'Hubo un problema al crear el rol, revise si el nombre del rol esta disponible y asegurese de seleccionar al menos un permiso');
         }
     }
-
-
+    //Función para editar un rol
     public function editar_rol(Request $request, $id)
     {
         try {
@@ -53,10 +53,7 @@ class RolesController extends Controller
             return redirect()->route('roles')->with('error', 'Hubo un problema al actualizar el rol, revise si el nombre del rol esta disponible y asegurese de seleccionar al menos un permiso');
         }
     }
-
-
-
-
+    //Función para eliminar un rol
     public function eliminar_rol(Request $request)
     {
         try {

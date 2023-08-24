@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
+    //Redirección a la vista de usuarios
     public function usuarios()
     {
         $roles      = Role::all();
         $usuarios = User::orderBy('updated_at', 'desc')->get();
         return view('usuarios.index', compact('usuarios', 'roles'));
     }
-
+    //Función para crear un nuevo usuario
     public function crear_usuario(Request $request)
     {
         try {
@@ -24,14 +24,13 @@ class UserController extends Controller
                 'nombre_completo' => 'required|string|max:100',
                 'nombre_usuario' => 'required|string|max:100|unique:users',
                 'password' => 'required|string|min:4|max:100',
-                'ci' => 'required|numeric|min:100000|max:999999999',
+                'ci' => 'required|string|max:10',
                 'exp' => 'required|string|max:3',
                 'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,bmp,webp'
             ]);
             $data['estado'] = 'Activo';
             $data['password'] = bcrypt($data['password']);
-
-
+            //Método para manejar la foto
             if ($request->hasFile('foto')) {
                 $extension = $request->file('foto')->getClientOriginalExtension();
                 $filename = uniqid() . '.' . $extension;
@@ -39,7 +38,6 @@ class UserController extends Controller
                 $data['foto'] = "img/fotos/" . $filename;
             }
             User::create($data)->assignRole($request->input('rol'));
-
             return redirect()->route('usuarios')
                 ->with('success', 'Usuario creado correctamente.');
         } catch (\Exception $e) {
@@ -47,20 +45,18 @@ class UserController extends Controller
                 ->with('error', 'Error al crear al usuario, revise si el nombre de usuario esta disponible');
         }
     }
-
+    //Funcion para editar un usuario
     public function editar_usuario($id, Request $request)
     {
         try {
-
             $user = User::find($id);
             if (!$user) {
                 return redirect()->route('usuarios')->with('warning', 'Usuario no encontrado.');
             }
-
             $data = $request->validate([
                 'nombre_completo' => 'required|string|max:100',
                 'nombre_usuario' => 'required|string|max:100|unique:users,nombre_usuario,' . $id,
-                'ci' => 'required|numeric|min:100000|max:999999999',
+                'ci' => 'required|string|max:10',
                 'exp' => 'required|string|max:3',
                 'estado' => 'required|string|max:100',
                 'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,bmp,webp'
@@ -68,7 +64,7 @@ class UserController extends Controller
 
             if ($request->password)
                 $data['password'] = bcrypt($request->password);
-
+            //Método para manejar la foto
             if ($request->hasFile('foto')) {
                 if ($user->foto && file_exists(public_path($user->foto))) {
                     unlink(public_path($user->foto));
@@ -89,21 +85,18 @@ class UserController extends Controller
                 ->with('error', 'Error al actualizar al usuario. Revise si el nombre de usuario está disponible.');
         }
     }
-
+    //Función para cambiar la contraseña del usuario logueado
     public function cambiar_contraseña($id, Request $request)
     {
         try {
-
             $user = User::find($id);
             if (!$user) {
                 return back()->with('warning', 'Usuario no encontrado.');
             }
-
             $data = $request->validate([
                 'old_password' => 'required|string|min:4|max:100',
                 'new_password' => 'required|string|min:4|max:100',
             ]);
-
             if (Hash::check($data['old_password'], $user->password)) {
                 $user->password = Hash::make($data['new_password']);
                 $user->save();
@@ -119,12 +112,10 @@ class UserController extends Controller
                 ->with('error', 'Ocurrio un error');
         }
     }
-
-
+    //Función para cambiar la foto del usuario logueado
     public function cambiar_foto($id, Request $request)
     {
         try {
-
             $user = User::find($id);
             if (!$user) {
                 return redirect()->route('usuarios')->with('warning', 'Usuario no encontrado.');
@@ -132,8 +123,6 @@ class UserController extends Controller
             $data = $request->validate([
                 'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg,bmp,webp'
             ]);
-
-
             if ($request->hasFile('foto')) {
                 if ($user->foto && file_exists(public_path($user->foto))) {
                     unlink(public_path($user->foto));
@@ -152,9 +141,7 @@ class UserController extends Controller
                 ->with('error', 'Error al actualizar al usuario. Revise el tipo de archivo enviado.');
         }
     }
-
-
-
+    //Función para eliminar un usuario
     public function eliminar_usuario($id)
     {
         try {

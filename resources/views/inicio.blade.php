@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <!--ESTADISTICAS DEL SISTEMA-->
     <div class="container-fluid">
         <div class="fade-in">
             <div class="row">
@@ -21,9 +22,9 @@
                     <div class="card text-white bg-info">
                         <div class="card-body pb-0 card-info">
                             <div>
-                                <h3>150</h3>
+                                <h3>{{ $vacunas }}</h3>
                             </div>
-                            <div class="text-value-lg mb-2">Registros</div>
+                            <div class="text-value-lg mb-2">Registros de vacunación</div>
                         </div>
                         <div class="card-body pb-0" style="background-color: #155ca3">
                             <h5 class="text-center">Más info</h5>

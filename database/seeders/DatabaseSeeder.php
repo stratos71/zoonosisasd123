@@ -17,15 +17,16 @@ class DatabaseSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
 
 
-        $permissions = ['ver usuarios', 'crear usuarios', 'editar usuarios','eliminar usuarios',
-                        'ver especies','crear especies','editar especies','eliminar especies',
-                        'ver registros','crear registros','editar registros','eliminar registros',
-                        'ver roles','crear roles','editar roles','eliminar roles',];
+        $permissions = [
+            'ver usuarios', 'crear usuarios', 'editar usuarios', 'eliminar usuarios',
+            'ver especies', 'crear especies', 'editar especies', 'eliminar especies',
+            'ver vacunaciones', 'registrar vacunaciones',
+            'ver roles', 'crear roles', 'editar roles', 'eliminar roles',
+        ];
 
         foreach ($permissions as $permName) {
             Permission::create(['name' => $permName, 'guard_name' => 'web']);
         }
-
         $adminRole = Role::create(['name' => 'admin', 'guard_name' => 'web']);
 
         $adminRole->givePermissionTo($permissions);
@@ -41,7 +42,6 @@ class DatabaseSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
-
         $user = User::create($userData);
         $user->assignRole('admin');
         Schema::enableForeignKeyConstraints();

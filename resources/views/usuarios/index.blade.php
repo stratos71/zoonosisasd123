@@ -5,33 +5,9 @@
         <div class="fade-in">
             <div class="card">
                 <div class="card-header">Administrar Usuarios</div>
-
                 <div class="card-body">
-
                     <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal"
                         data-bs-target="#crear_usuario">Agregar Usuario</button>
-
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    ...
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <!--MODAL AGREGAR USUARIO-->
                     <div class="modal fade" id="crear_usuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -45,7 +21,6 @@
                                 </div>
                                 <form id="form" method="POST" action="{{ route('crear_usuario') }}"
                                     enctype="multipart/form-data" onsubmit="bloquear()">
-
                                     @csrf
                                     <div class="modal-body">
                                         <div class="mb-2">
@@ -118,7 +93,6 @@
                         </div>
                     </div>
                     <!--MODAL AGREGAR USUARIO-->
-
 
                     <!--MODAL EDITAR USUARIO-->
                     <div class="modal fade" id="editar_usuario" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -214,8 +188,7 @@
                         </div>
                     </div>
                     <!--MODAL EDITAR USUARIO-->
-
-
+                    <!--TABLA USUARIOS-->
                     <div class="table-responsive">
                         <table id="datatable" class="table table-striped table-bordered">
                             <thead>
@@ -282,11 +255,21 @@
             </div>
         </div>
     </div>
-
+    <!--INICIALIZACIÓN DE DATATABLE-->
     <script>
         $(document).ready(function() {
             $('#datatable').DataTable({
                 order: [],
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy',
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
+                    }
+                ],
                 language: {
                     processing: "Procesando...",
                     search: "Buscar:",
@@ -316,6 +299,7 @@
             });
         });
     </script>
+    <!--FUNCIÓN PARA OBTENER DATOS ACTUALES PARA EDITAR-->
     <script>
         $(document).ready(function() {
             $('.userUpdate').on('click', function() {
@@ -336,7 +320,7 @@
             });
         });
     </script>
-
+    <!--BLOQUEO DEL BOTON-->
     <script>
         function bloquear() {
             var btn = document.getElementById("boton");
@@ -348,7 +332,7 @@
             btn.disabled = true;
         }
     </script>
-
+    <!--BLOQUEO DEL BOTON-->
     <script>
         function bloquear2() {
             var btn = document.getElementById("boton2");

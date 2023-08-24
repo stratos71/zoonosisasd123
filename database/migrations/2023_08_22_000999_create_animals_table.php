@@ -21,28 +21,15 @@ return new class extends Migration
             $table->string('tamaño')->nullable();
             $table->string('genero', 100);
             $table->string('esterilizado', 100);
-
             $table->unsignedBigInteger('propietario_id');
-            $table->foreign('propietario_id')->references('id')
-                ->on('propietarios')->onDelete('cascade');
-
-            #saluditos a Cristian
-
             $table->unsignedBigInteger('especie_id');
-            $table->foreign('especie_id')->references('id')
-                ->on('especies')->onDelete('cascade');
 
-
-
-
-
+            $table->foreign('propietario_id')->references('id')->on('propietarios')->onDelete('cascade');
+            $table->foreign('especie_id')->references('id')->on('especies')->onDelete('cascade');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('animals');

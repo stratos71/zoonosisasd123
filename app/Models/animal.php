@@ -9,6 +9,8 @@ class animal extends Model
 {
     use HasFactory;
 
+    protected $table = 'animales';
+
     protected $fillable = [
         'nombre',
         'raza',
@@ -20,15 +22,15 @@ class animal extends Model
         'propietario_id',
         'especie_id',
         'vacuna_id',
-
     ];
-
+    //Relación animal->propietario
     public function propietario()
-    { return $this->belongsTo(Propietario ::class);}
-
+    {
+        return $this->belongsTo(Propietario::class);
+    }
+    //Relación animal->especie
     public function especie()
-    { return $this->belongsTo(Especie ::class);}
-  
-
-
+    {
+        return $this->belongsTo(Especie::class);
+    }
 }

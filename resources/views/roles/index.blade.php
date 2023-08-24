@@ -5,9 +5,7 @@
         <div class="fade-in">
             <div class="card">
                 <div class="card-header">Administrar Roles</div>
-
                 <div class="card-body">
-
                     <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal"
                         data-bs-target="#crear_rol">Agregar
                         Rol</button>
@@ -31,7 +29,6 @@
                                             <input required maxlength="100" type="text" class="form-control"
                                                 name="nombre" placeholder="ej: Técnico 1">
                                         </div>
-
                                         <div class="mb-2">
                                             <label for="recipient-name" class="col-form-label"><b>Permisos para este
                                                     Rol</b></label>
@@ -79,12 +76,10 @@
                                             <input required maxlength="100" type="text" class="form-control"
                                                 name="nombre" placeholder="ej: Técnico 1">
                                         </div>
-
                                         <div class="mb-2">
                                             <label for="recipient-name" class="col-form-label"><b>Permisos para este
                                                     Rol</b></label>
                                             <div class="row">
-
                                                 @foreach ($permisos as $permiso)
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
@@ -97,7 +92,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="modal-footer">
                                         <button class="btn btn-danger mr-auto" type="button" data-bs-dismiss="modal"
                                             aria-label="Close">Salir</button>
@@ -109,11 +103,9 @@
                         </div>
                     </div>
                     <!--MODAL EDITAR ROL-->
-
-
+                    <!--TABLA DE ROLES-->
                     <div class="table-responsive">
                         <table id="datatable" class="table table-striped table-bordered">
-
                             <thead>
                                 <tr>
                                     <th>id</th>
@@ -127,7 +119,6 @@
                                     <?php
                                     $contador = 0;
                                     ?>
-
                                     <tr>
                                         <td class="id">{{ $role->id }}</td>
                                         <td class="name">{{ $role->name }}</td>
@@ -140,8 +131,6 @@
                                                 data-url="{{ route('editar_rol', $role->id) }}" data-bs-toggle="modal"
                                                 data-bs-target="#editar_rol"><i class="bi bi-pencil-fill text-white"></i>
                                             </a>
-
-
                                             @if ($role->users->count() == 0)
                                                 <form action="{{ route('eliminar_rol', $role->id) }}" method="POST"
                                                     style="display: inline-block;">
@@ -157,12 +146,13 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <!--TABLA DE ROLES-->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <!--FUNCIÓN PARA OBTENER DATOS ACTUALES PARA EDITAR-->
     <script>
         $(document).ready(function() {
             $('.rolUpdate').on('click', function() {
@@ -179,7 +169,7 @@
             });
         });
     </script>
-
+    <!--BLOQUEO DEL BOTON-->
     <script>
         function bloquear() {
             var btn = document.getElementById("boton");
@@ -191,7 +181,7 @@
             btn.disabled = true;
         }
     </script>
-
+    <!--BLOQUEO DEL BOTON-->
     <script>
         function bloquear2() {
             var btn = document.getElementById("boton2");
@@ -203,11 +193,21 @@
             btn.disabled = true;
         }
     </script>
-
+    <!--INICIALIZACIÓN DE DATATABLE-->
     <script>
         $(document).ready(function() {
             $('#datatable').DataTable({
                 order: [],
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy',
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
+                    }
+                ],
                 language: {
                     processing: "Procesando...",
                     search: "Buscar:",
